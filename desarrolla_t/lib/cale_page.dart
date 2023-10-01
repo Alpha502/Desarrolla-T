@@ -15,6 +15,7 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Drawer(child: Costado()),
       appBar: AppBar(
         title: Text('TableCalendar - Basics'),
       ),

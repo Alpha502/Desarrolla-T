@@ -1,9 +1,10 @@
+import 'package:desarrolla_t/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 
+//DISEÑO DE LAS TARJETAS DE INFORMACION
 class InfoTarjeta extends StatelessWidget {
   const InfoTarjeta({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,10 +26,10 @@ class InfoTarjeta extends StatelessWidget {
         Align(
             alignment: const AlignmentDirectional(-0.18, 0.00),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
               child: Container(
                   width: 180,
-                  height: 120,
+                  height: 100,
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 228, 227, 227),
                       borderRadius: BorderRadius.circular(7)),
@@ -95,6 +96,7 @@ class InfoTarjeta extends StatelessWidget {
   }
 }
 
+//DRAWER
 class Costado extends StatelessWidget {
   const Costado({super.key});
 
@@ -112,11 +114,20 @@ class Costado extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Home'),
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage(
+                      items: List<String>.generate(5, (i) => 'Item $i'))),
+            );
+          },
         ),
         ListTile(
           title: const Text('Calendario'),
           onTap: () {
+            Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => TableBasicsExample()),
@@ -132,6 +143,7 @@ class Costado extends StatelessWidget {
   }
 }
 
+//PENDIENTES EN PAG. PRINCIPAL (home_page)
 class InfoPendiente extends StatelessWidget {
   const InfoPendiente({super.key});
 
@@ -202,7 +214,7 @@ class InfoPendiente extends StatelessWidget {
   }
 }
 
-//PENDIENTES HOY
+//PENDIENTES HOY (cale_page)
 class InfoPendientesHoy extends StatefulWidget {
   const InfoPendientesHoy({super.key});
 
@@ -290,8 +302,7 @@ class _InfoPendientesHoy extends State<InfoPendientesHoy> {
   }
 }
 
-// PENDIENTES PROXIMAMENTE
-
+// PENDIENTES PROXIMAMENTE (cale_page)
 class InfoPendientes extends StatefulWidget {
   const InfoPendientes({super.key});
 

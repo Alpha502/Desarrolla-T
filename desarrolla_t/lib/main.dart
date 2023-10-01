@@ -9,5 +9,7 @@ void main() => runApp(MaterialApp(
       ),
       routes: {
         '/calpage': (context) => TableBasicsExample(),
+        '/homepage': (context) =>
+            HomePage(items: List<String>.generate(5, (i) => 'Item $i')),
       },
     ));
