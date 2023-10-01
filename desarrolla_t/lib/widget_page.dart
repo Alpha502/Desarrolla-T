@@ -29,10 +29,9 @@ class InfoTarjeta extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const InfoPage()),
+              MaterialPageRoute(builder: (context) => const NewPage()),
             );
           },
           child: Align(
@@ -406,104 +405,6 @@ class _InfoPendientesState extends State<InfoPendientes> {
   }
 }
 
-// create some values
-void copyToClipboard(String input) {
-  String textToCopy = input.replaceFirst('#', '').toUpperCase();
-  if (textToCopy.startsWith('FF') && textToCopy.length == 8) {
-    textToCopy = textToCopy.replaceFirst('FF', '');
-  }
-  Clipboard.setData(ClipboardData(text: '#$textToCopy'));
-}
-
-class HSVColorPickerExample extends StatefulWidget {
-  const HSVColorPickerExample({
-    Key? key,
-    required this.pickerColor,
-    required this.onColorChanged,
-    this.colorHistory,
-    this.onHistoryChanged,
-  }) : super(key: key);
-
-  final Color pickerColor;
-  final ValueChanged<Color> onColorChanged;
-  final List<Color>? colorHistory;
-  final ValueChanged<List<Color>>? onHistoryChanged;
-
-  @override
-  State<HSVColorPickerExample> createState() => _HSVColorPickerExampleState();
-}
-
-class _HSVColorPickerExampleState extends State<HSVColorPickerExample> {
-  // Picker 1
-  final PaletteType _paletteType = PaletteType.hsl;
-  final bool _enableAlpha = true;
-  final bool _displayThumbColor = true;
-  final List<ColorLabelType> _labelTypes = [
-    ColorLabelType.hsl,
-    ColorLabelType.hsv
-  ];
-  final bool _displayHexInputBar = false;
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const SizedBox(height: 20),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      titlePadding: const EdgeInsets.all(0),
-                      contentPadding: const EdgeInsets.all(0),
-                      content: SingleChildScrollView(
-                        child: ColorPicker(
-                          pickerColor: widget.pickerColor,
-                          onColorChanged: widget.onColorChanged,
-                          colorPickerWidth: 300,
-                          pickerAreaHeightPercent: 0.7,
-                          enableAlpha: _enableAlpha,
-                          labelTypes: _labelTypes,
-                          displayThumbColor: _displayThumbColor,
-                          paletteType: _paletteType,
-                          pickerAreaBorderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(2),
-                            topRight: Radius.circular(2),
-                          ),
-                          hexInputBar: _displayHexInputBar,
-                          colorHistory: widget.colorHistory,
-                          onHistoryChanged: widget.onHistoryChanged,
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: widget.pickerColor,
-                shadowColor: widget.pickerColor.withOpacity(1),
-                elevation: 10,
-              ),
-              child: Text(
-                'Color Picker with Slider',
-                style: TextStyle(
-                    color: useWhiteForeground(widget.pickerColor)
-                        ? Colors.white
-                        : Colors.black),
-              ),
-            ),
-            const SizedBox(width: 20)
-          ],
-        ),
-      ],
-    );
-  }
-}
-
 class InfoPage extends StatefulWidget {
   const InfoPage({super.key});
 
@@ -558,5 +459,57 @@ class _InfoPage extends State<InfoPage> {
             child: const Text("Default Color Picker"),
           ),
         ]));
+  }
+}
+
+class BotonColor extends StatefulWidget {
+  const BotonColor({super.key});
+
+  @override
+  State<BotonColor> createState() => _BotonColorState();
+}
+
+class _BotonColorState extends State<BotonColor> {
+  Color mycolor = Colors.lightBlue;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Pick a color!'),
+                content: SingleChildScrollView(
+                  child: ColorPicker(
+                    paletteType: PaletteType.hueWheel,
+                    hexInputBar: true,
+                    pickerColor: mycolor, //default color
+                    onColorChanged: (Color color) {
+                      //on color picked
+                      setState(() {
+                        mycolor = color;
+                      });
+                    },
+                  ),
+                ),
+                actions: <Widget>[
+                  ElevatedButton(
+                    child: const Text('DONE'),
+                    onPressed: () {
+                      Navigator.of(context).pop(); //dismiss the color picker
+                    },
+                  ),
+                ],
+              );
+            });
+      },
+      child: Icon(Icons.tune),
+      style: ElevatedButton.styleFrom(
+        shape: CircleBorder(),
+        padding: EdgeInsets.all(18),
+        backgroundColor: mycolor, // Background color
+      ),
+    );
   }
 }

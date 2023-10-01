@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'APP SUPER MAMALONA';
+    const title = 'Desarrolla-T';
 
     return MaterialApp(
         title: title,

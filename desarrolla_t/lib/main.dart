@@ -9,7 +9,7 @@ void main() => runApp(MaterialApp(
         items: List<String>.generate(5, (i) => 'Item $i'),
       ),
       routes: {
-        '/infopage': (context) => const MyApp(),
+        '/infopage': (context) => const NewPage(),
         '/calpage': (context) => const TableBasicsExample(),
         '/homepage': (context) =>
             HomePage(items: List<String>.generate(5, (i) => 'Item $i')),

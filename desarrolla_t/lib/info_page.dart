@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:desarrolla_t/widget_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NewPage extends StatelessWidget {
+  const NewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Nuevo Evento'),
       ),
-      body: InfoPage(),
-    ));
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [InfoPage(), BotonColor()],
+        ),
+      ),
+    );
   }
 }
