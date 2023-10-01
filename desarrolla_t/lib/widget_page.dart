@@ -1,6 +1,10 @@
 import 'package:desarrolla_t/home_page.dart';
+import 'package:desarrolla_t/info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter/cupertino.dart' show CupertinoTextField;
+import 'package:flutter/services.dart';
 
 //DISEÑO DE LAS TARJETAS DE INFORMACION
 class InfoTarjeta extends StatelessWidget {
@@ -23,74 +27,83 @@ class InfoTarjeta extends StatelessWidget {
             ),
           ),
         ),
-        Align(
-            alignment: const AlignmentDirectional(-0.18, 0.00),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              child: Container(
-                  width: 180,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 228, 227, 227),
-                      borderRadius: BorderRadius.circular(7)),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Expanded(
-                        child: Column(
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => InfoPage()),
+            );
+          },
+          child: Align(
+              alignment: const AlignmentDirectional(-0.18, 0.00),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                child: Container(
+                    width: 180,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 228, 227, 227),
+                        borderRadius: BorderRadius.circular(7)),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'CLASE DE COCINA',
+                                style: TextStyle(fontSize: 18),
+                                softWrap: true,
+                                maxLines: 2,
+                                overflow: TextOverflow.fade, //new
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'En el Iteso',
+                                style: TextStyle(fontSize: 12),
+                                softWrap: true,
+                                textAlign: TextAlign.start,
+                                maxLines: 2,
+                                overflow: TextOverflow.fade, //new
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'CLASE DE COCINA',
-                              style: TextStyle(fontSize: 18),
-                              softWrap: true,
-                              maxLines: 2,
-                              overflow: TextOverflow.fade, //new
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'En el Iteso',
-                              style: TextStyle(fontSize: 12),
-                              softWrap: true,
-                              textAlign: TextAlign.start,
-                              maxLines: 2,
-                              overflow: TextOverflow.fade, //new
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              child: Text(
+                                '8 - 9 pm',
+                                style: TextStyle(fontSize: 15),
+                                softWrap: true,
+                                maxLines: 2,
+                                overflow: TextOverflow.fade, //new
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Text(
-                              '8 - 9 pm',
-                              style: TextStyle(fontSize: 15),
-                              softWrap: true,
-                              maxLines: 2,
-                              overflow: TextOverflow.fade, //new
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                    ],
-                  )),
-            )),
+                        SizedBox(
+                          width: 8,
+                        ),
+                      ],
+                    )),
+              )),
+        ),
       ],
     );
   }
@@ -384,6 +397,106 @@ class _InfoPendientesState extends State<InfoPendientes> {
                       });
                     },
                   ))),
+        ),
+      ],
+    );
+  }
+}
+
+// create some values
+void copyToClipboard(String input) {
+  String textToCopy = input.replaceFirst('#', '').toUpperCase();
+  if (textToCopy.startsWith('FF') && textToCopy.length == 8) {
+    textToCopy = textToCopy.replaceFirst('FF', '');
+  }
+  Clipboard.setData(ClipboardData(text: '#$textToCopy'));
+}
+
+class HSVColorPickerExample extends StatefulWidget {
+  const HSVColorPickerExample({
+    Key? key,
+    required this.pickerColor,
+    required this.onColorChanged,
+    this.colorHistory,
+    this.onHistoryChanged,
+  }) : super(key: key);
+
+  final Color pickerColor;
+  final ValueChanged<Color> onColorChanged;
+  final List<Color>? colorHistory;
+  final ValueChanged<List<Color>>? onHistoryChanged;
+
+  @override
+  State<HSVColorPickerExample> createState() => _HSVColorPickerExampleState();
+}
+
+class _HSVColorPickerExampleState extends State<HSVColorPickerExample> {
+  // Picker 1
+  PaletteType _paletteType = PaletteType.hsl;
+  bool _enableAlpha = true;
+  bool _displayThumbColor = true;
+  final List<ColorLabelType> _labelTypes = [
+    ColorLabelType.hsl,
+    ColorLabelType.hsv
+  ];
+  bool _displayHexInputBar = false;
+
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        const SizedBox(height: 20),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      titlePadding: const EdgeInsets.all(0),
+                      contentPadding: const EdgeInsets.all(0),
+                      content: SingleChildScrollView(
+                        child: ColorPicker(
+                          pickerColor: widget.pickerColor,
+                          onColorChanged: widget.onColorChanged,
+                          colorPickerWidth: 300,
+                          pickerAreaHeightPercent: 0.7,
+                          enableAlpha: _enableAlpha,
+                          labelTypes: _labelTypes,
+                          displayThumbColor: _displayThumbColor,
+                          paletteType: _paletteType,
+                          pickerAreaBorderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(2),
+                            topRight: Radius.circular(2),
+                          ),
+                          hexInputBar: _displayHexInputBar,
+                          colorHistory: widget.colorHistory,
+                          onHistoryChanged: widget.onHistoryChanged,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Text(
+                'Color Picker with Slider',
+                style: TextStyle(
+                    color: useWhiteForeground(widget.pickerColor)
+                        ? Colors.white
+                        : Colors.black),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: widget.pickerColor,
+                shadowColor: widget.pickerColor.withOpacity(1),
+                elevation: 10,
+              ),
+            ),
+            const SizedBox(width: 20)
+          ],
         ),
       ],
     );
