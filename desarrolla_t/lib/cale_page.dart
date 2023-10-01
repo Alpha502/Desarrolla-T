@@ -64,13 +64,13 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 20, 0),
                   child: Text(
                     'Hoy',
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 28),
                   ),
                 ),
                 SizedBox(height: 10),
-                InfoPendiente(),
+                InfoPendientesHoy(),
                 SizedBox(height: 10),
-                InfoPendiente()
+                InfoPendientesHoy()
               ],
             ),
             const Column(
@@ -80,8 +80,8 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 20, 0),
                   child: Text(
-                    'Pendientes',
-                    style: TextStyle(fontSize: 30),
+                    'Proximamente',
+                    style: TextStyle(fontSize: 28),
                   ),
                 ),
                 SizedBox(height: 10),

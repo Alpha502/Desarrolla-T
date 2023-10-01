@@ -202,13 +202,21 @@ class InfoPendiente extends StatelessWidget {
   }
 }
 
-class InfoPendientes extends StatelessWidget {
-  const InfoPendientes({super.key});
+//PENDIENTES HOY
+class InfoPendientesHoy extends StatefulWidget {
+  const InfoPendientesHoy({super.key});
+
+  @override
+  _InfoPendientesHoy createState() => _InfoPendientesHoy();
+}
+
+class _InfoPendientesHoy extends State<InfoPendientesHoy> {
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Widget>[
         Align(
           alignment: const AlignmentDirectional(-0.81, 0.00),
           child: Container(
@@ -231,7 +239,7 @@ class InfoPendientes extends StatelessWidget {
             width: 12,
             height: 76,
             decoration: const BoxDecoration(
-              color: Colors.amber,
+              color: Colors.blue,
             ),
           ),
         ),
@@ -240,17 +248,21 @@ class InfoPendientes extends StatelessWidget {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
             child: Text(
-              'Hello World',
+              '6:00 pm',
             ),
           ),
         ),
         Align(
           alignment: AlignmentDirectional(-0.58, -0.94),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
             child: Container(
-              width: 100,
+              width: 80,
               height: 23,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text('data')],
+              ),
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(10),
@@ -258,13 +270,109 @@ class InfoPendientes extends StatelessWidget {
             ),
           ),
         ),
-        const Align(
+        Align(
           alignment: AlignmentDirectional(0.23, -1.15),
           child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+              padding: EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
               child: ListTile(
-                title: Text('Thomas Jefferson'),
-              )),
+                  title: Text('Actividad por entregar'),
+                  trailing: Checkbox(
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
+                  ))),
+        ),
+      ],
+    );
+  }
+}
+
+// PENDIENTES PROXIMAMENTE
+
+class InfoPendientes extends StatefulWidget {
+  const InfoPendientes({super.key});
+
+  @override
+  _InfoPendientesState createState() => _InfoPendientesState();
+}
+
+class _InfoPendientesState extends State<InfoPendientes> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Align(
+          alignment: const AlignmentDirectional(-0.81, 0.00),
+          child: Container(
+            width: 400,
+            height: 77,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 228, 228, 228),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(10),
+                topLeft: Radius.circular(0),
+                topRight: Radius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: const AlignmentDirectional(-0.80, 0.00),
+          child: Container(
+            width: 12,
+            height: 76,
+            decoration: const BoxDecoration(
+              color: Colors.green,
+            ),
+          ),
+        ),
+        const Align(
+          alignment: AlignmentDirectional(-0.54, -0.96),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+            child: Text(
+              '23/07/2023',
+            ),
+          ),
+        ),
+        Align(
+          alignment: AlignmentDirectional(-0.58, -0.94),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+            child: Container(
+              width: 80,
+              height: 23,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text('data')],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: AlignmentDirectional(0.23, -1.15),
+          child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
+              child: ListTile(
+                  title: Text('Actividad por entregar'),
+                  trailing: Checkbox(
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
+                  ))),
         ),
       ],
     );
