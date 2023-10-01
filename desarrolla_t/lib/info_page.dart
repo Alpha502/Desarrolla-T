@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+//import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'package:desarrolla_t/widget_page.dart';
 
@@ -24,29 +24,28 @@ class _MyAppState extends State<InfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor =
-        useWhiteForeground(currentColor) ? Colors.white : Colors.black;
     return AnimatedTheme(
       data: lightTheme ? ThemeData.light() : ThemeData.dark(),
       child: Builder(builder: (context) {
         return DefaultTabController(
           length: 3,
           child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Nuevo evento'),
-            ),
-            body: TabBarView(
-              children: <Widget>[
-                HSVColorPickerExample(
-                  pickerColor: currentColor,
-                  onColorChanged: changeColor,
-                  colorHistory: colorHistory,
-                  onHistoryChanged: (List<Color> colors) =>
-                      colorHistory = colors,
+              appBar: AppBar(
+                title: const Text('Nuevo evento'),
+              ),
+              body: Expanded(
+                child: Column(
+                  children: [
+                    HSVColorPickerExample(
+                      pickerColor: currentColor,
+                      onColorChanged: changeColor,
+                      colorHistory: colorHistory,
+                      onHistoryChanged: (List<Color> colors) =>
+                          colorHistory = colors,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              )),
         );
       }),
     );

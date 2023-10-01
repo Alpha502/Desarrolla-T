@@ -3,7 +3,7 @@ import 'package:desarrolla_t/info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter/cupertino.dart' show CupertinoTextField;
+//import 'package:flutter/cupertino.dart' show CupertinoTextField;
 import 'package:flutter/services.dart';
 
 //DISEÑO DE LAS TARJETAS DE INFORMACION
@@ -32,7 +32,7 @@ class InfoTarjeta extends StatelessWidget {
             Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => InfoPage()),
+              MaterialPageRoute(builder: (context) => const InfoPage()),
             );
           },
           child: Align(
@@ -143,7 +143,8 @@ class Costado extends StatelessWidget {
             Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => TableBasicsExample()),
+              MaterialPageRoute(
+                  builder: (context) => const TableBasicsExample()),
             );
           },
         ),
@@ -200,9 +201,9 @@ class InfoPendiente extends StatelessWidget {
           ),
         ),
         Align(
-          alignment: AlignmentDirectional(-0.58, -0.94),
+          alignment: const AlignmentDirectional(-0.58, -0.94),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
             child: Container(
               width: 100,
               height: 23,
@@ -232,6 +233,7 @@ class InfoPendientesHoy extends StatefulWidget {
   const InfoPendientesHoy({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InfoPendientesHoy createState() => _InfoPendientesHoy();
 }
 
@@ -278,29 +280,29 @@ class _InfoPendientesHoy extends State<InfoPendientesHoy> {
           ),
         ),
         Align(
-          alignment: AlignmentDirectional(-0.58, -0.94),
+          alignment: const AlignmentDirectional(-0.58, -0.94),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
             child: Container(
               width: 80,
               height: 23,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text('data')],
-              ),
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text('data')],
               ),
             ),
           ),
         ),
         Align(
-          alignment: AlignmentDirectional(0.23, -1.15),
+          alignment: const AlignmentDirectional(0.23, -1.15),
           child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
+              padding: const EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
               child: ListTile(
-                  title: Text('Actividad por entregar'),
+                  title: const Text('Actividad por entregar'),
                   trailing: Checkbox(
                     value: isChecked,
                     onChanged: (bool? value) {
@@ -320,6 +322,7 @@ class InfoPendientes extends StatefulWidget {
   const InfoPendientes({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InfoPendientesState createState() => _InfoPendientesState();
 }
 
@@ -366,29 +369,29 @@ class _InfoPendientesState extends State<InfoPendientes> {
           ),
         ),
         Align(
-          alignment: AlignmentDirectional(-0.58, -0.94),
+          alignment: const AlignmentDirectional(-0.58, -0.94),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
             child: Container(
               width: 80,
               height: 23,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text('data')],
-              ),
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text('data')],
               ),
             ),
           ),
         ),
         Align(
-          alignment: AlignmentDirectional(0.23, -1.15),
+          alignment: const AlignmentDirectional(0.23, -1.15),
           child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
+              padding: const EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
               child: ListTile(
-                  title: Text('Actividad por entregar'),
+                  title: const Text('Actividad por entregar'),
                   trailing: Checkbox(
                     value: isChecked,
                     onChanged: (bool? value) {
@@ -432,14 +435,14 @@ class HSVColorPickerExample extends StatefulWidget {
 
 class _HSVColorPickerExampleState extends State<HSVColorPickerExample> {
   // Picker 1
-  PaletteType _paletteType = PaletteType.hsl;
-  bool _enableAlpha = true;
-  bool _displayThumbColor = true;
+  final PaletteType _paletteType = PaletteType.hsl;
+  final bool _enableAlpha = true;
+  final bool _displayThumbColor = true;
   final List<ColorLabelType> _labelTypes = [
     ColorLabelType.hsl,
     ColorLabelType.hsv
   ];
-  bool _displayHexInputBar = false;
+  final bool _displayHexInputBar = false;
 
   @override
   @override
@@ -482,17 +485,17 @@ class _HSVColorPickerExampleState extends State<HSVColorPickerExample> {
                   },
                 );
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: widget.pickerColor,
+                shadowColor: widget.pickerColor.withOpacity(1),
+                elevation: 10,
+              ),
               child: Text(
                 'Color Picker with Slider',
                 style: TextStyle(
                     color: useWhiteForeground(widget.pickerColor)
                         ? Colors.white
                         : Colors.black),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: widget.pickerColor,
-                shadowColor: widget.pickerColor.withOpacity(1),
-                elevation: 10,
               ),
             ),
             const SizedBox(width: 20)
