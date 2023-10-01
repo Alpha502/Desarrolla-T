@@ -10,9 +10,11 @@ class NewPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Nuevo Evento'),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
-          children: [InfoPage(), BotonColor()],
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [BotonColor(), DatePicker()],
         ),
       ),
     );

@@ -3,10 +3,10 @@ import 'package:desarrolla_t/info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-//import 'package:flutter/cupertino.dart' show CupertinoTextField;
+import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 
-//DISEÑO DE LAS TARJETAS DE INFORMACION
+//----- ---DISEÑO DE LAS TARJETAS DE INFORMACION----------------------------------------------------------------------------------------------------------------------------------------------
 class InfoTarjeta extends StatelessWidget {
   const InfoTarjeta({super.key});
   @override
@@ -108,7 +108,7 @@ class InfoTarjeta extends StatelessWidget {
   }
 }
 
-//DRAWER
+//---------DRAWER------------------------------------------------------------------------------------------------------------------------------------------------------
 class Costado extends StatelessWidget {
   const Costado({super.key});
 
@@ -156,7 +156,7 @@ class Costado extends StatelessWidget {
   }
 }
 
-//PENDIENTES EN PAG. PRINCIPAL (home_page)
+//---------PENDIENTES EN PAG. PRINCIPAL (home_page)------------------------------------------------------------------------------------------------------------------
 class InfoPendiente extends StatelessWidget {
   const InfoPendiente({super.key});
 
@@ -226,8 +226,9 @@ class InfoPendiente extends StatelessWidget {
     );
   }
 }
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//PENDIENTES HOY (cale_page)
+//--------PENDIENTES HOY (cale_page)----------------------------------------------------------------------------------------------------------------------------------------
 class InfoPendientesHoy extends StatefulWidget {
   const InfoPendientesHoy({super.key});
 
@@ -315,8 +316,9 @@ class _InfoPendientesHoy extends State<InfoPendientesHoy> {
     );
   }
 }
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// PENDIENTES PROXIMAMENTE (cale_page)
+//-------PENDIENTES PROXIMAMENTE (cale_page)----------------------------------------------------------------------------------------------------------------------------------------------------
 class InfoPendientes extends StatefulWidget {
   const InfoPendientes({super.key});
 
@@ -405,63 +407,7 @@ class _InfoPendientesState extends State<InfoPendientes> {
   }
 }
 
-class InfoPage extends StatefulWidget {
-  const InfoPage({super.key});
-
-  @override
-  _InfoPage createState() => _InfoPage();
-}
-
-class _InfoPage extends State<InfoPage> {
-  Color mycolor = Colors.lightBlue;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white, //background color of app from the color picker
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(20),
-        child: Column(children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: mycolor, // Background color
-            ),
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Pick a color!'),
-                      content: SingleChildScrollView(
-                        child: ColorPicker(
-                          paletteType: PaletteType.hueWheel,
-                          hexInputBar: true,
-                          pickerColor: mycolor, //default color
-                          onColorChanged: (Color color) {
-                            //on color picked
-                            setState(() {
-                              mycolor = color;
-                            });
-                          },
-                        ),
-                      ),
-                      actions: <Widget>[
-                        ElevatedButton(
-                          child: const Text('DONE'),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pop(); //dismiss the color picker
-                          },
-                        ),
-                      ],
-                    );
-                  });
-            },
-            child: const Text("Default Color Picker"),
-          ),
-        ]));
-  }
-}
-
+//--------BOTON PARA EL COLOR PICKER-----------------------------------------------------------------------------------------------------------------------
 class BotonColor extends StatefulWidget {
   const BotonColor({super.key});
 
@@ -509,6 +455,59 @@ class _BotonColorState extends State<BotonColor> {
         shape: CircleBorder(),
         padding: EdgeInsets.all(18),
         backgroundColor: mycolor, // Background color
+      ),
+    );
+  }
+}
+
+//--------DATE PICKER-----------------------------------------------------------------------------------------------------------------------
+class DatePicker extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _DatePicker();
+  }
+}
+
+class _DatePicker extends State<DatePicker> {
+  TextEditingController dateInput = TextEditingController();
+
+  @override
+  void initState() {
+    dateInput.text = "";
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(15),
+      height: MediaQuery.of(context).size.width,
+      child: Center(
+        child: TextField(
+          controller: dateInput,
+          decoration: InputDecoration(
+            icon: Icon(Icons.calendar_today),
+            labelText: "Enter Text",
+          ),
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(1950),
+                lastDate: DateTime(2100));
+
+            if (pickedDate != null) {
+              print(pickedDate);
+              String formattedDate =
+                  DateFormat('yyyy-MM-dd').format(pickedDate);
+              print(formattedDate);
+
+              setState(() {
+                dateInput.text = formattedDate;
+              });
+            } else {}
+          },
+        ),
       ),
     );
   }
