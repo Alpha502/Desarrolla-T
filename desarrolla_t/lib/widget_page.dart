@@ -443,8 +443,6 @@ class _HSVColorPickerExampleState extends State<HSVColorPickerExample> {
     ColorLabelType.hsv
   ];
   final bool _displayHexInputBar = false;
-
-  @override
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -503,5 +501,62 @@ class _HSVColorPickerExampleState extends State<HSVColorPickerExample> {
         ),
       ],
     );
+  }
+}
+
+class InfoPage extends StatefulWidget {
+  const InfoPage({super.key});
+
+  @override
+  _InfoPage createState() => _InfoPage();
+}
+
+class _InfoPage extends State<InfoPage> {
+  Color mycolor = Colors.lightBlue;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: Colors.white, //background color of app from the color picker
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(20),
+        child: Column(children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: mycolor, // Background color
+            ),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Pick a color!'),
+                      content: SingleChildScrollView(
+                        child: ColorPicker(
+                          paletteType: PaletteType.hueWheel,
+                          hexInputBar: true,
+                          pickerColor: mycolor, //default color
+                          onColorChanged: (Color color) {
+                            //on color picked
+                            setState(() {
+                              mycolor = color;
+                            });
+                          },
+                        ),
+                      ),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          child: const Text('DONE'),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pop(); //dismiss the color picker
+                          },
+                        ),
+                      ],
+                    );
+                  });
+            },
+            child: const Text("Default Color Picker"),
+          ),
+        ]));
   }
 }
