@@ -1,5 +1,5 @@
 import 'package:desarrolla_t/home_page.dart';
-import 'package:desarrolla_t/info_page.dart';
+import 'package:desarrolla_t/editEvent_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -479,35 +479,67 @@ class _DatePicker extends State<DatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      height: MediaQuery.of(context).size.width,
-      child: Center(
-        child: TextField(
-          controller: dateInput,
-          decoration: InputDecoration(
-            icon: Icon(Icons.calendar_today),
-            labelText: "Enter Text",
+    return TextField(
+      controller: dateInput,
+      decoration: InputDecoration(
+        icon: Icon(Icons.calendar_today),
+        labelText: "Enter Text",
+      ),
+      onTap: () async {
+        DateTime? pickedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1950),
+            lastDate: DateTime(2100));
+
+        if (pickedDate != null) {
+          print(pickedDate);
+          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+          print(formattedDate);
+
+          setState(() {
+            dateInput.text = formattedDate;
+          });
+        } else {}
+      },
+    );
+  }
+}
+
+//--------NAME INPUT-----------------------------------------------------------------------------------------------------------------------
+class NameInput extends StatefulWidget {
+  const NameInput({super.key});
+
+  @override
+  MyCustomFormState createState() {
+    return MyCustomFormState();
+  }
+}
+
+class MyCustomFormState extends State<NameInput> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              icon: Icon(Icons.text_decrease),
+              labelText: 'Nombre del evento',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
           ),
-          onTap: () async {
-            DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(1950),
-                lastDate: DateTime(2100));
-
-            if (pickedDate != null) {
-              print(pickedDate);
-              String formattedDate =
-                  DateFormat('yyyy-MM-dd').format(pickedDate);
-              print(formattedDate);
-
-              setState(() {
-                dateInput.text = formattedDate;
-              });
-            } else {}
-          },
-        ),
+        ],
       ),
     );
   }

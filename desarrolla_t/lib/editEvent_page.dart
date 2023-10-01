@@ -14,7 +14,12 @@ class NewPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [BotonColor(), DatePicker()],
+          children: [
+            NameInput(),
+            DatePicker(),
+            const Text('Escoge un color'),
+            BotonColor(),
+          ],
         ),
       ),
     );
