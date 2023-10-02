@@ -1,5 +1,5 @@
 import 'package:desarrolla_t/home_page.dart';
-import 'package:desarrolla_t/editEvent_page.dart';
+//import 'package:desarrolla_t/editEvent_page.dart';
 import 'package:desarrolla_t/info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';

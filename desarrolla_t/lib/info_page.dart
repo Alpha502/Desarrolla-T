@@ -1,3 +1,4 @@
+import 'package:desarrolla_t/home_page.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
 
@@ -33,7 +34,7 @@ class _InfoPage extends State<InfoPage> {
                         const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                     child: Container(
                       width: 374,
-                      height: 378,
+                      height: 374,
                       decoration: BoxDecoration(
                         color: const Color(0xDBE2E2E2),
                         borderRadius: BorderRadius.circular(10),
@@ -100,7 +101,7 @@ class _InfoPage extends State<InfoPage> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                     child: Container(
-                      width: 377,
+                      width: 374,
                       height: 119,
                       decoration: const BoxDecoration(
                         color: Color(0xFFEF9D39),
@@ -191,7 +192,53 @@ class _InfoPage extends State<InfoPage> {
                 ),
               ],
             ),
-            Row()
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 15, 12),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.mode_edit_outline_rounded),
+                    iconSize: 40,
+                    color: Colors.green,
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                      icon: Icon(Icons.clear),
+                      iconSize: 40,
+                      color: Colors.red,
+                      onPressed: () {
+                        showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('¿Quieres eliminar el evento?'),
+                            content: const Text(
+                                'Esta accion es permanente, una vez aceptada ya no se puede recuperar'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomePage(
+                                            items: List<String>.generate(
+                                                5, (i) => 'Item $i'))),
+                                  );
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                ],
+              ),
+            )
           ],
         ),
       ),
