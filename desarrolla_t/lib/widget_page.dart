@@ -1,3 +1,4 @@
+import 'package:desarrolla_t/habits_page.dart';
 import 'package:desarrolla_t/home_page.dart';
 import 'package:desarrolla_t/editEvent_page.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +149,14 @@ class Costado extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Habitos'),
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Habits()),
+            );
+          },
         ),
       ],
     );
