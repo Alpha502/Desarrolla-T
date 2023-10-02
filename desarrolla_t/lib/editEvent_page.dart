@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 
@@ -11,6 +9,38 @@ class NewPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Nuevo Evento'),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(300, 0, 0, 0),
+        child: Container(
+          height: 50,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Evento Agregado'),
+                  content:
+                      const Text('Se agrego tu nuevo evento a tu calendario'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Cancel'),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'OK'),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            },
+            child: const Center(
+              child: Text('Agregar'),
+            ),
+          ),
+        ),
       ),
       body: const SingleChildScrollView(
         child: Column(
