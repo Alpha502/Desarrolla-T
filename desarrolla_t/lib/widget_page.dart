@@ -2,6 +2,7 @@ import 'package:desarrolla_t/habits_page.dart';
 import 'package:desarrolla_t/home_page.dart';
 //import 'package:desarrolla_t/editEvent_page.dart';
 import 'package:desarrolla_t/info_page.dart';
+import 'package:desarrolla_t/profle_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -119,11 +120,24 @@ class Costado extends StatelessWidget {
       // Important: Remove any padding from the ListView.
       padding: EdgeInsets.zero,
       children: [
-        const DrawerHeader(
-          decoration: BoxDecoration(
+        DrawerHeader(
+          decoration: const BoxDecoration(
             color: Colors.blue,
           ),
-          child: Text('Drawer Header'),
+          child: Column(
+            children: [
+              const Text('Drawer Header'),
+              IconButton(onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Profile()),
+                );
+              },icon: const Icon(Icons.person, size: 60)),
+            ],
+          ),
+          
         ),
         ListTile(
           title: const Text('Home'),
