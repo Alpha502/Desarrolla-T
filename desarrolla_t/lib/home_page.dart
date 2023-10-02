@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 
+import 'package:desarrolla_t/editEvent_page.dart';
+
 class HomePage extends StatelessWidget {
   final List<String> items;
 
@@ -16,6 +18,27 @@ class HomePage extends StatelessWidget {
             drawer: const Drawer(child: Costado()),
             appBar: AppBar(
               title: const Text(title),
+              actions: <Widget>[
+                Builder(builder: (BuildContext context) {
+                  return IconButton(
+                    icon: Icon(Icons.post_add),
+                    selectedIcon: const Icon(Icons.add),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NewPage()),
+                      );
+                      const snackBar = SnackBar(
+                        content: Text('Se agrego a favoritos',
+                            style:
+                                TextStyle(fontSize: 15, color: Colors.white)),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                  );
+                })
+              ],
             ),
             body: SingleChildScrollView(
               child: Column(

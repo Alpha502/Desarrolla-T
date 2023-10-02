@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:desarrolla_t/home_page.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:desarrolla_t/editEvent_page.dart';
+import 'package:desarrolla_t/info_page.dart';
 
 void main() => runApp(MaterialApp(
       title: 'Rutas',
@@ -10,8 +11,9 @@ void main() => runApp(MaterialApp(
         items: List<String>.generate(5, (i) => 'Item $i'),
       ),
       routes: {
-        '/infopage': (context) => const NewPage(),
         '/habitpage': (context) => const Habits(),
+        '/newpage': (context) => const NewPage(),
+        '/infopage': (context) => const InfoPage(),
         '/calpage': (context) => const TableBasicsExample(),
         '/homepage': (context) =>
             HomePage(items: List<String>.generate(5, (i) => 'Item $i')),

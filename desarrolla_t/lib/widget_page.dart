@@ -1,6 +1,7 @@
 import 'package:desarrolla_t/habits_page.dart';
 import 'package:desarrolla_t/home_page.dart';
-import 'package:desarrolla_t/editEvent_page.dart';
+//import 'package:desarrolla_t/editEvent_page.dart';
+import 'package:desarrolla_t/info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -31,7 +32,7 @@ class InfoTarjeta extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const NewPage()),
+              MaterialPageRoute(builder: (context) => const InfoPage()),
             );
           },
           child: Align(
@@ -581,11 +582,11 @@ class _CategoryInput extends State<CategoryInput> {
           value: dropdownValue,
           icon: const Icon(Icons.arrow_downward),
           elevation: 16,
-          style: const TextStyle(color: Colors.deepPurple),
+          style: const TextStyle(color: Colors.lightBlue),
           underline: Container(
             width: double.infinity,
             height: 2,
-            color: Colors.deepPurpleAccent,
+            color: Colors.lightBlue,
           ),
           onChanged: (String? value) {
             // This is called when the user selects an item.
@@ -604,3 +605,6 @@ class _CategoryInput extends State<CategoryInput> {
     );
   }
 }
+
+
+//--------TARJETA DE INFORMACION DEL EVENTO-----------------------------------------------------------------------------------------------------------------------
