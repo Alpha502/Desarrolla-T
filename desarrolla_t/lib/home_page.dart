@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
               actions: <Widget>[
                 Builder(builder: (BuildContext context) {
                   return IconButton(
-                    icon: Icon(Icons.post_add),
+                    icon: Icon(Icons.add),
                     selectedIcon: const Icon(Icons.add),
                     onPressed: () {
                       Navigator.push(
@@ -29,12 +29,6 @@ class HomePage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const NewPage()),
                       );
-                      const snackBar = SnackBar(
-                        content: Text('Se agrego a favoritos',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                   );
                 })

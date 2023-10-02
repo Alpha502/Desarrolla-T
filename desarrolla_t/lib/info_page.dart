@@ -217,6 +217,10 @@ class _InfoPage extends State<InfoPage> {
                                 'Esta accion es permanente, una vez aceptada ya no se puede recuperar'),
                             actions: <Widget>[
                               TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -226,10 +230,6 @@ class _InfoPage extends State<InfoPage> {
                                                 5, (i) => 'Item $i'))),
                                   );
                                 },
-                                child: const Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, 'OK'),
                                 child: const Text('OK'),
                               ),
                             ],
