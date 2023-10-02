@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 
-import 'package:desarrolla_t/editEvent_page.dart';
+import 'package:desarrolla_t/infoEvent_page.dart';
 
 class HomePage extends StatelessWidget {
   final List<String> items;
