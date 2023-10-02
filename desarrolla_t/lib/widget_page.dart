@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/services.dart';
 
 //----- ---DISEÑO DE LAS TARJETAS DE INFORMACION----------------------------------------------------------------------------------------------------------------------------------------------
 class InfoTarjeta extends StatelessWidget {
@@ -450,18 +449,20 @@ class _BotonColorState extends State<BotonColor> {
               );
             });
       },
-      child: Icon(Icons.tune),
       style: ElevatedButton.styleFrom(
-        shape: CircleBorder(),
-        padding: EdgeInsets.all(18),
+        shape: const CircleBorder(),
+        padding: const EdgeInsets.all(18),
         backgroundColor: mycolor, // Background color
       ),
+      child: const Icon(Icons.tune),
     );
   }
 }
 
 //--------DATE PICKER-----------------------------------------------------------------------------------------------------------------------
 class DatePicker extends StatefulWidget {
+  const DatePicker({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _DatePicker();
@@ -481,9 +482,9 @@ class _DatePicker extends State<DatePicker> {
   Widget build(BuildContext context) {
     return TextField(
       controller: dateInput,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         icon: Icon(Icons.calendar_today),
-        labelText: "Enter Text",
+        labelText: "Selecciona una fecha",
       ),
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
@@ -493,9 +494,9 @@ class _DatePicker extends State<DatePicker> {
             lastDate: DateTime(2100));
 
         if (pickedDate != null) {
-          print(pickedDate);
+          //print(pickedDate);
           String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-          print(formattedDate);
+          //print(formattedDate);
 
           setState(() {
             dateInput.text = formattedDate;
@@ -518,7 +519,6 @@ class NameInput extends StatefulWidget {
 
 class MyCustomFormState extends State<NameInput> {
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -541,6 +541,58 @@ class MyCustomFormState extends State<NameInput> {
           ),
         ],
       ),
+    );
+  }
+}
+
+//--------Category INPUT-----------------------------------------------------------------------------------------------------------------------
+
+const List<String> list = <String>[
+  'Categoria 1',
+  'Categoria 2',
+  'Categoria 3',
+  'Categoria 4'
+];
+
+class CategoryInput extends StatefulWidget {
+  const CategoryInput({super.key});
+
+  @override
+  State<CategoryInput> createState() => _CategoryInput();
+}
+
+class _CategoryInput extends State<CategoryInput> {
+  String dropdownValue = list.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DropdownButton<String>(
+          value: dropdownValue,
+          icon: const Icon(Icons.arrow_downward),
+          elevation: 16,
+          style: const TextStyle(color: Colors.deepPurple),
+          underline: Container(
+            width: double.infinity,
+            height: 2,
+            color: Colors.deepPurpleAccent,
+          ),
+          onChanged: (String? value) {
+            // This is called when the user selects an item.
+            setState(() {
+              dropdownValue = value!;
+            });
+          },
+          items: list.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 }
