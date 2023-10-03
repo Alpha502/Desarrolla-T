@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:desarrolla_t/newEvent_page.dart';
 
 class TableBasicsExample extends StatefulWidget {
   const TableBasicsExample({super.key});
@@ -21,6 +22,20 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
       drawer: const Drawer(child: Costado()),
       appBar: AppBar(
         title: const Text('TableCalendar - Basics'),
+        actions: <Widget>[
+          Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.add),
+              selectedIcon: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const NewEvent()),
+                );
+              },
+            );
+          })
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

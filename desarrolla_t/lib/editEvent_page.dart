@@ -10,7 +10,7 @@ class ModifyEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nuevo Evento'),
+        title: const Text('Modificar Evento'),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(300, 0, 0, 0),
@@ -22,8 +22,9 @@ class ModifyEvent extends StatelessWidget {
               showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Evento Modificado'),
-                  content: const Text('Se modifico el evento'),
+                  title: const Text('Evento Agregado'),
+                  content:
+                      const Text('Se agrego tu nuevo evento a tu calendario'),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -38,7 +39,7 @@ class ModifyEvent extends StatelessWidget {
               );
             },
             child: const Center(
-              child: Text('Modificar'),
+              child: Text('Agregar'),
             ),
           ),
         ),
@@ -48,8 +49,8 @@ class ModifyEvent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            NameModifier(),
-            DateModifier(),
+            NameInput(),
+            DatePicker(),
             Row(
               children: [
                 Padding(
