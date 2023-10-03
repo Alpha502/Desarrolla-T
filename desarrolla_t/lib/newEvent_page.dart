@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 
-class NewPage extends StatelessWidget {
-  const NewPage({super.key});
+//PARA CREAR UN NUEVO EVENTO
+
+class NewEvent extends StatelessWidget {
+  const NewEvent({super.key});
 
   @override
   Widget build(BuildContext context) {

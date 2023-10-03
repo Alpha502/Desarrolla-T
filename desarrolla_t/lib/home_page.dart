@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
+import 'package:desarrolla_t/newEvent_page.dart';
 
-import 'package:desarrolla_t/infoEvent_page.dart';
+//PAGINA PRINCIPAL
 
 class HomePage extends StatelessWidget {
   final List<String> items;
@@ -27,7 +28,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NewPage()),
+                            builder: (context) => const NewEvent()),
                       );
                     },
                   );

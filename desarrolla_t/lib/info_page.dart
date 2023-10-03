@@ -1,7 +1,10 @@
 import 'package:desarrolla_t/home_page.dart';
+import 'package:desarrolla_t/editEvent_page.dart';
+import 'package:desarrolla_t/newEvent_page.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
 
+//PARA VER INFORMACION DE UN EVENTO
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
 
@@ -202,7 +205,12 @@ class _InfoPage extends State<InfoPage> {
                     icon: Icon(Icons.mode_edit_outline_rounded),
                     iconSize: 40,
                     color: Colors.green,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ModifyEvent()));
+                    },
                   ),
                   IconButton(
                       icon: Icon(Icons.clear),

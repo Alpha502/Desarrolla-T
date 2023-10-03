@@ -8,6 +8,8 @@ import 'package:desarrolla_t/cale_page.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
 
+//DISEÑOS EN GENERAL
+
 //----- ---DISEÑO DE LAS TARJETAS DE INFORMACION----------------------------------------------------------------------------------------------------------------------------------------------
 class InfoTarjeta extends StatelessWidget {
   const InfoTarjeta({super.key});
@@ -127,17 +129,17 @@ class Costado extends StatelessWidget {
           child: Column(
             children: [
               const Text('Drawer Header'),
-              IconButton(onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const Profile()),
-                );
-              },icon: const Icon(Icons.person, size: 60)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Profile()),
+                    );
+                  },
+                  icon: const Icon(Icons.person, size: 60)),
             ],
           ),
-          
         ),
         ListTile(
           title: const Text('Home'),
@@ -168,8 +170,7 @@ class Costado extends StatelessWidget {
             Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const Habits()),
+              MaterialPageRoute(builder: (context) => const Habits()),
             );
           },
         ),
@@ -552,7 +553,7 @@ class MyCustomFormState extends State<NameInput> {
           TextFormField(
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              icon: Icon(Icons.text_decrease),
+              icon: Icon(Icons.abc),
               labelText: 'Nombre del evento',
             ),
             validator: (value) {
@@ -620,5 +621,88 @@ class _CategoryInput extends State<CategoryInput> {
   }
 }
 
+//--------DATE MODIFIER-----------------------------------------------------------------------------------------------------------------------
+class DateModifier extends StatefulWidget {
+  const DateModifier({super.key});
 
-//--------TARJETA DE INFORMACION DEL EVENTO-----------------------------------------------------------------------------------------------------------------------
+  @override
+  State<StatefulWidget> createState() {
+    return _DatePicker();
+  }
+}
+
+class _DateModifier extends State<DateModifier> {
+  TextEditingController dateInput = TextEditingController();
+
+  @override
+  void initState() {
+    dateInput.text = "";
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: dateInput,
+      decoration: const InputDecoration(
+        icon: Icon(Icons.calendar_today),
+        labelText: "02/10/2023",
+      ),
+      onTap: () async {
+        DateTime? pickedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1950),
+            lastDate: DateTime(2100));
+
+        if (pickedDate != null) {
+          //print(pickedDate);
+          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+          //print(formattedDate);
+
+          setState(() {
+            dateInput.text = formattedDate;
+          });
+        } else {}
+      },
+    );
+  }
+}
+
+//--------NAME MODIFIER-----------------------------------------------------------------------------------------------------------------------
+class NameModifier extends StatefulWidget {
+  const NameModifier({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _NameModifier();
+  }
+}
+
+class _NameModifier extends State<NameModifier> {
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              icon: Icon(Icons.abc),
+              labelText: 'Clase de Yoga', //Nombre de la actividad actual
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
