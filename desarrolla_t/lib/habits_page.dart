@@ -17,7 +17,7 @@ class Habits extends StatelessWidget {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 30),
+                  padding: const EdgeInsets.only(top: 30),
                   child: Row(
                     children: [
                       Expanded(child:
@@ -49,7 +49,7 @@ class Habits extends StatelessWidget {
                 ),
               ),
               Expanded(child: 
-                Padding(padding: EdgeInsets.all(20),
+                Padding(padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
                       const Text('Habito 1', textAlign: TextAlign.right),
