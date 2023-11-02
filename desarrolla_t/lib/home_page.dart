@@ -57,7 +57,7 @@ class _HomePage extends State<HomePage>{
                         },
                       ),
                   ],
-                  //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+                  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
                 body: SingleChildScrollView(
                   child: Column(
