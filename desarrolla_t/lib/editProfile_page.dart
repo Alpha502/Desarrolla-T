@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 //PARA EDITAR informaacion de perfil
 
 class ModifyProfile extends StatefulWidget {
-  const ModifyProfile({super.key});
+  const ModifyProfile({Key? key}) : super(key: key);
 
   @override
   State<ModifyProfile> createState() => _ModifyProfileState();
@@ -35,11 +35,8 @@ class _ModifyProfileState extends State<ModifyProfile> {
   Future pickImageC() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
-
       if (image == null) return;
-
       final imageTemp = File(image.path);
-
       setState(() => this.image = imageTemp);
     } on PlatformException catch (e) {
       print('Failed to pick image $e');
@@ -115,12 +112,12 @@ class _ModifyProfileState extends State<ModifyProfile> {
                     onPressed: () {
                       pickImageC();
                     }),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
               ],
             ),
-            image != null ? Image.file(image!) : Text("No image selected")
+            image != null ? Image.file(image!) : const Text("No image selected")
           ],
         ),
       ),

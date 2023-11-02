@@ -1,0 +1,55 @@
+[
+    {
+         "id_name": 1 ,
+         "event_name": "Hacer tarea de calculo",
+         "event_hour": 9,
+         "event_date": "12 Noviembre",
+         "event_color": "#6D72C3"
+     },
+     {
+         "id_name": 2 ,
+         "event_name": "Clase de Pintura",
+         "event_hour": 12,
+         "event_date": "12 Octubre",
+         "event_place": "Por Chapalita",
+         "event_color": "#6D72C3",
+         "event_notes": "Hay mucho trafico por la zona, toma precauciones"
+     },
+     {
+         "id_name": 3 ,
+         "event_name": "Ir por la renta",
+         "event_hour": 9,
+         "event_date": "09 Diciembre",
+         "event_place": "Por Av. Mexico",
+         "event_color": "#A3C9A8",
+         "event_notes": "Tiene que ser antes de las 7 pm"
+     },
+     {
+         "id_name": 4 ,
+         "event_name": "Llevar a mamá al medico",
+         "event_hour": 11,
+         "event_date": "29 Octubre",
+         "event_place": "Hospital San Jose",
+         "event_color": "#FAD4C0",
+         "event_notes": "Son 500 de la consulta"
+     },
+     {
+         "id_name": 5 ,
+         "event_name": "Partido de basquet",
+         "event_hour": 9,
+         "event_date": "01 Noviembre",
+         "event_place": "Unidad Revolucion",
+         "event_color": "#A3C9A8",
+         "event_notes": "Llevar ropa limpia"
+     }
+ 
+ ]
+    
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 

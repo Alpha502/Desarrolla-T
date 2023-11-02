@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => ThemeModel(),
       child: Consumer(builder: (context, ThemeModel themeNotifier, child){
+      
         return MaterialApp(
           title: 'Rutas',
           theme: themeNotifier.isDark ? ThemeData.dark() : ThemeData.light(),
@@ -54,4 +55,4 @@ class MyApp extends StatelessWidget {
       },),
     );
   }
-}
+} 

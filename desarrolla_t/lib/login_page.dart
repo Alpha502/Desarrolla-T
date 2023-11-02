@@ -13,13 +13,26 @@ class _LoginPageState extends State<LoginPage> {
   String login = '';
   String password = '';
 
+  bool agree = false;
+
+  void _doSomething() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              HomePage(items: List<String>.generate(5, (i) => 'Item $i'))),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('https://marketplace.canva.com/EAE_zqQhT9s/1/0/900w/canva-blue-gradient-phone-wallpaper-Ba3gAikj4nM.jpg'),
+            image: NetworkImage(
+                'https://marketplace.canva.com/EAE_zqQhT9s/1/0/900w/canva-blue-gradient-phone-wallpaper-Ba3gAikj4nM.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -82,18 +95,19 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const Text(
-                        'Pasele solo con boton por ahorita',
-                        style: TextStyle(fontSize: 20.0),
+                      Material(
+                        child: Checkbox(
+                          value: agree,
+                          onChanged: (value) {
+                            setState(() {
+                              agree = value ?? false;
+                            });
+                          },
+                        ),
                       ),
-                      Checkbox(
-                        checkColor: Colors.white,
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        },
+                      const Text(
+                        'I have read and accept terms and conditions',
+                        overflow: TextOverflow.ellipsis,
                       )
                     ]),
               ),
@@ -101,15 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20.0),
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomePage(
-                            items: List<String>.generate(5, (i) => 'Item $i'))),
-                  );
-                },
+                onPressed: agree ? _doSomething : null,
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 10.0,
