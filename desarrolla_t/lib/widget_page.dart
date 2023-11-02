@@ -190,7 +190,7 @@ class InfoPendiente extends StatelessWidget {
         Align(
           alignment: const AlignmentDirectional(-0.81, 0.00),
           child: Container(
-            width: 400,
+            width: 450,
             height: 77,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 228, 228, 228),
@@ -270,7 +270,7 @@ class _InfoPendientesHoy extends State<InfoPendientesHoy> {
         Align(
           alignment: const AlignmentDirectional(-0.81, 0.00),
           child: Container(
-            width: 400,
+            width: 450,
             height: 77,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 228, 228, 228),
@@ -323,7 +323,7 @@ class _InfoPendientesHoy extends State<InfoPendientesHoy> {
         Align(
           alignment: const AlignmentDirectional(0.23, -1.15),
           child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
+              padding: const EdgeInsetsDirectional.fromSTEB(210, 10, 0, 10),
               child: ListTile(
                   title: const Text('Actividad por entregar'),
                   trailing: Checkbox(
@@ -360,7 +360,7 @@ class _InfoPendientesState extends State<InfoPendientes> {
         Align(
           alignment: const AlignmentDirectional(-0.81, 0.00),
           child: Container(
-            width: 400,
+            width: 450,
             height: 77,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 228, 228, 228),
@@ -413,7 +413,7 @@ class _InfoPendientesState extends State<InfoPendientes> {
         Align(
           alignment: const AlignmentDirectional(0.23, -1.15),
           child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(160, 10, 0, 10),
+              padding: const EdgeInsetsDirectional.fromSTEB(210, 10, 0, 10),
               child: ListTile(
                   title: const Text('Actividad por entregar'),
                   trailing: Checkbox(

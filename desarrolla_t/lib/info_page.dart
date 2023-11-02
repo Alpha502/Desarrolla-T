@@ -22,7 +22,6 @@ class _InfoPage extends State<InfoPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Detalles'),
-        
       ),
       body: SafeArea(
         top: true,
@@ -100,7 +99,7 @@ class _InfoPage extends State<InfoPage> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-0.94, -0.94),
+                  alignment: const AlignmentDirectional(-0.84, -0.94),
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
