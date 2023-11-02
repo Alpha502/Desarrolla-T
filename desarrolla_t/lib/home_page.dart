@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:desarrolla_t/jsons/constants.dart';
 import 'package:desarrolla_t/theme_model.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
@@ -7,21 +10,26 @@ import 'package:provider/provider.dart';
 //PAGINA PRINCIPAL
 
 class HomePage extends StatefulWidget {
-  final List<String> items;
 
-  const HomePage({super.key, required this.items});
+  const HomePage({super.key});
 
   @override
   // ignore: no_logic_in_create_state
-  State<HomePage> createState() => _HomePage(items);
+  State<HomePage> createState() => _HomePage();
   
 }
 
 class _HomePage extends State<HomePage>{
 
-  final List<String> items;
+  List<dynamic> eventos = [];
+  List<dynamic> pendientes = [];
 
-  _HomePage(this.items);
+  @override
+  void initState(){
+    eventos = jsonDecode(EVENTO);
+    pendientes = jsonDecode(PENDIENTES);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +65,7 @@ class _HomePage extends State<HomePage>{
                         },
                       ),
                   ],
-                  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+                  //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
                 body: SingleChildScrollView(
                   child: Column(
@@ -77,15 +85,21 @@ class _HomePage extends State<HomePage>{
                         height: 150,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: items.length,
+                          itemCount: eventos.length,
                           itemBuilder: (context, index) {
-                            return const Center(
+                            return  Center(
                               child: Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 12,
                                   ),
-                                  InfoTarjeta(),
+                                  InfoTarjeta(name:eventos[index]["event_name"],
+                                  hour:eventos[index]["event_hour"],
+                                  date:eventos[index]["event_date"],
+                                  place:eventos[index]["event_place"],
+                                  color:eventos[index]["event_color"],
+                                  notes:eventos[index]["event_notes"],
+                                  category:eventos[index]["event_category"]),
                                 ],
                               ),
                             );
@@ -103,15 +117,18 @@ class _HomePage extends State<HomePage>{
                         height: 500,
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
-                          itemCount: items.length,
+                          itemCount: pendientes.length,
                           itemBuilder: (context, index) {
-                            return const Center(
+                            return Center(
                               child: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 12,
                                   ),
-                                  InfoPendiente()
+                                  InfoPendiente(name:pendientes[index]["pending_name"],
+                                  hour:pendientes[index]["pending_hour"],
+                                  date:pendientes[index]["pending_date"],
+                                  color:pendientes[index]["pending_color"],)
                                 ],
                               ),
                             );

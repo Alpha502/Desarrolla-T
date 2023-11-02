@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
             '/editeventpage': (context) => const ModifyEvent(),
             '/calpage': (context) => const TableBasicsExample(),
             '/loginpage' : (context) => const LoginPage(),
-            '/homepage': (context) => HomePage(items: List<String>.generate(5, (i) => 'Item $i')),
+            '/homepage': (context) => const HomePage(),
           },
         ); 
       },),

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:desarrolla_t/jsons/constants.dart';
 import 'package:desarrolla_t/widget_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +14,15 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  List<dynamic> perfil = [];
+
+  @override
+  void initState(){
+    perfil = jsonDecode(USER);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

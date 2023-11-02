@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       context,
       MaterialPageRoute(
           builder: (context) =>
-              HomePage(items: List<String>.generate(5, (i) => 'Item $i'))),
+              const HomePage()),
     );
   }
 

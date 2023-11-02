@@ -12,7 +12,23 @@ import 'package:intl/intl.dart';
 
 //----- ---DISEÑO DE LAS TARJETAS DE INFORMACION----------------------------------------------------------------------------------------------------------------------------------------------
 class InfoTarjeta extends StatelessWidget {
-  const InfoTarjeta({super.key});
+  const InfoTarjeta({super.key, 
+  required this.name, 
+  required this.hour, 
+  required this.date, 
+  required this.place, 
+  required this.color, 
+  required this.notes, 
+  required this.category});
+
+  final String name;
+  final String date;
+  final String place;
+  final int hour;
+  final String color;
+  final String notes;
+  final String category;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,7 +41,8 @@ class InfoTarjeta extends StatelessWidget {
               width: 80,
               height: 41,
               decoration: BoxDecoration(
-                color: const Color(0xFFFF6868),
+                //color:  Color(0xFFFF6868),
+                color: colorFromHex(color),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -48,11 +65,11 @@ class InfoTarjeta extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 228, 227, 227),
                         borderRadius: BorderRadius.circular(7)),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Expanded(
@@ -60,22 +77,22 @@ class InfoTarjeta extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
-                                'CLASE DE COCINA',
-                                style: TextStyle(fontSize: 18),
+                                name,
+                                style: const TextStyle(fontSize: 18),
                                 softWrap: true,
                                 maxLines: 2,
                                 overflow: TextOverflow.fade, //new
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
-                                'En el Iteso',
-                                style: TextStyle(fontSize: 12),
+                                place,
+                                style: const TextStyle(fontSize: 12),
                                 softWrap: true,
                                 textAlign: TextAlign.start,
                                 maxLines: 2,
@@ -89,10 +106,10 @@ class InfoTarjeta extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                               child: Text(
-                                '8 - 9 pm',
-                                style: TextStyle(fontSize: 15),
+                                hour.toString(),
+                                style: const TextStyle(fontSize: 15),
                                 softWrap: true,
                                 maxLines: 2,
                                 overflow: TextOverflow.fade, //new
@@ -100,7 +117,7 @@ class InfoTarjeta extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                       ],
@@ -148,8 +165,7 @@ class Costado extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => HomePage(
-                      items: List<String>.generate(5, (i) => 'Item $i'))),
+                  builder: (context) => const HomePage()),
             );
           },
         ),
@@ -181,7 +197,17 @@ class Costado extends StatelessWidget {
 
 //---------PENDIENTES EN PAG. PRINCIPAL (home_page)------------------------------------------------------------------------------------------------------------------
 class InfoPendiente extends StatelessWidget {
-  const InfoPendiente({super.key});
+  const InfoPendiente({super.key,
+  required this.name,
+  required this.hour,
+  required this.date,
+  required this.color
+  });
+
+  final String name;
+  final String date;
+  final int hour;
+  final String color;
 
   @override
   Widget build(BuildContext context) {
@@ -213,12 +239,12 @@ class InfoPendiente extends StatelessWidget {
             ),
           ),
         ),
-        const Align(
-          alignment: AlignmentDirectional(-0.54, -0.96),
+        Align(
+          alignment: const AlignmentDirectional(-0.54, -0.96),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
             child: Text(
-              'Hello World',
+              name
             ),
           ),
         ),
@@ -230,18 +256,18 @@ class InfoPendiente extends StatelessWidget {
               width: 100,
               height: 23,
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: colorFromHex(color),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
         ),
-        const Align(
-          alignment: AlignmentDirectional(0.23, -1.15),
+        Align(
+          alignment: const AlignmentDirectional(0.53, -1.15),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
             child: Text(
-              'Hello World',
+              date,
             ),
           ),
         ),

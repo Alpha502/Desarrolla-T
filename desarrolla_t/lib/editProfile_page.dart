@@ -105,7 +105,7 @@ class _ModifyProfileState extends State<ModifyProfile> {
                 MaterialButton(
                     color: Colors.blue,
                     child: const Text(
-                      "Pick Imagen from Camera",
+                      "Open Camera",
                       style: TextStyle(
                           color: Colors.white70, fontWeight: FontWeight.bold),
                     ),

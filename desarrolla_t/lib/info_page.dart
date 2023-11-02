@@ -233,9 +233,7 @@ class _InfoPage extends State<InfoPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomePage(
-                                            items: List<String>.generate(
-                                                5, (i) => 'Item $i'))),
+                                        builder: (context) => const HomePage()),
                                   );
                                 },
                                 child: const Text('OK'),
