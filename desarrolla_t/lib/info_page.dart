@@ -1,6 +1,5 @@
 import 'package:desarrolla_t/home_page.dart';
 import 'package:desarrolla_t/editEvent_page.dart';
-import 'package:desarrolla_t/newEvent_page.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
 
@@ -9,6 +8,7 @@ class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _InfoPage createState() => _InfoPage();
 }
 
@@ -22,6 +22,7 @@ class _InfoPage extends State<InfoPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Detalles'),
+        
       ),
       body: SafeArea(
         top: true,
@@ -99,7 +100,7 @@ class _InfoPage extends State<InfoPage> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-0.94, -0.94),
+                  alignment: const AlignmentDirectional(-0.94, -0.94),
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
@@ -202,7 +203,7 @@ class _InfoPage extends State<InfoPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.mode_edit_outline_rounded),
+                    icon: const Icon(Icons.mode_edit_outline_rounded),
                     iconSize: 40,
                     color: Colors.green,
                     onPressed: () {
@@ -213,7 +214,7 @@ class _InfoPage extends State<InfoPage> {
                     },
                   ),
                   IconButton(
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                       iconSize: 40,
                       color: Colors.red,
                       onPressed: () {

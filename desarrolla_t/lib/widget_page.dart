@@ -631,6 +631,7 @@ class DateModifier extends StatefulWidget {
   }
 }
 
+// ignore: unused_element
 class _DateModifier extends State<DateModifier> {
   TextEditingController dateInput = TextEditingController();
 
@@ -693,6 +694,82 @@ class _NameModifier extends State<NameModifier> {
               border: UnderlineInputBorder(),
               icon: Icon(Icons.abc),
               labelText: 'Clase de Yoga', //Nombre de la actividad actual
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//--------ProfileNameModifier-----------------------------------------------------------------------------------------------------------------------
+class ProfileNameModifier extends StatefulWidget {
+  const ProfileNameModifier({super.key});
+
+  @override
+  MyProfileNameModifier createState() {
+    return MyProfileNameModifier();
+  }
+}
+
+class MyProfileNameModifier extends State<ProfileNameModifier> {
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              icon: Icon(Icons.abc),
+              labelText: 'Nombre de usuario',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//--------ProfileNameModifier-----------------------------------------------------------------------------------------------------------------------
+class ProfileDateModifier extends StatefulWidget {
+  const ProfileDateModifier({super.key});
+
+  @override
+  MyProfileDateModifier createState() {
+    return MyProfileDateModifier();
+  }
+}
+
+class MyProfileDateModifier extends State<ProfileDateModifier> {
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              icon: Icon(Icons.abc),
+              labelText: 'Correo electronico',
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {

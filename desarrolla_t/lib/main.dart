@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             '/loginpage' : (context) => const LoginPage(),
             '/homepage': (context) => HomePage(items: List<String>.generate(5, (i) => 'Item $i')),
           },
-        );
+        ); 
       },),
     );
   }

@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.items});
 
   @override
+  // ignore: no_logic_in_create_state
   State<HomePage> createState() => _HomePage(items);
   
 }
@@ -36,7 +37,7 @@ class _HomePage extends State<HomePage>{
                   actions: <Widget>[
                     Builder(builder: (BuildContext context) {
                       return IconButton(
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         selectedIcon: const Icon(Icons.add),
                         onPressed: () {
                           Navigator.push(

@@ -14,7 +14,7 @@ class ModifyEvent extends StatelessWidget {
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(300, 0, 0, 0),
-        child: Container(
+        child: SizedBox(
           height: 50,
           child: ElevatedButton(
             onPressed: () {

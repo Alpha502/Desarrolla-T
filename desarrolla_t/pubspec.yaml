@@ -43,7 +43,6 @@ dependencies:
   intl: 0.18.1
   json_path: 0.6.2
   page_transition: 2.0.4
-  path_provider: 2.0.14
   path_provider_android: 2.0.25
   path_provider_foundation: 2.2.2
   path_provider_platform_interface: 2.0.6
@@ -59,6 +58,10 @@ dependencies:
   url_launcher_android: 6.0.27
   url_launcher_ios: 6.1.4
   url_launcher_platform_interface: 2.1.2
+  camera: ^0.10.5+5
+  path_provider: 2.0.14
+  path: 1.8.3
+  image_picker: 0.8.3
 
 
   # The following adds the Cupertino Icons font to your application.

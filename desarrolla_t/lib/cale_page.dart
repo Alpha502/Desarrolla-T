@@ -25,7 +25,7 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
         actions: <Widget>[
           Builder(builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
               selectedIcon: const Icon(Icons.add),
               onPressed: () {
                 Navigator.push(
