@@ -1,17 +1,16 @@
-import 'package:desarrolla_t/home_page.dart';
-import 'package:desarrolla_t/register_page.dart';
+import 'package:desarrolla_t/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   
@@ -20,6 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   String password = '';
 
   bool agree = false;
+  String Username = '';
+  String Nombre = '';
+  int age = 0;
 
   void _doSomething() {
     Navigator.pop(context);
@@ -27,22 +29,26 @@ class _LoginPageState extends State<LoginPage> {
       context,
       MaterialPageRoute(
           builder: (context) =>
-              const HomePage()),
-    );
-  }
-
-  void register(){
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) =>
-              const RegisterPage()),
+              const LoginPage()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+
+     CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    Future<void> addUser() {
+      // Call the user's CollectionReference to add a new user
+      return users
+          .add({
+            'correo': login, // John Doe
+            'password': password, // Stokes and Sons
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -67,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: 'login',
+                    hintText: 'Nuevo usuario (correo)',
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -91,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: 'password',
+                    hintText: 'Contraseña',
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -105,52 +111,30 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 20.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Material(
-                        child: Checkbox(
-                          value: agree,
-                          onChanged: (value) {
-                            setState(() {
-                              agree = value ?? false;
-                            });
-                          },
-                        ),
-                      ),
-                      const Text(
-                        'I have read and accept terms and conditions',
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ]),
-              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20.0),
                 ),
-                onPressed: agree ? _doSomething : null,
+                onPressed: addUser,
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 10.0,
                     horizontal: 50.0,
                   ),
-                  child: Text('Acceder'),
+                  child: Text('Registrar'),
                 ),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20.0),
                 ),
-                onPressed: agree ? register : null,
+                onPressed: _doSomething,
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 10.0,
                     horizontal: 50.0,
                   ),
-                  child: Text('Registrarse'),
+                  child: Text('Volver'),
                 ),
               ),
             ],
