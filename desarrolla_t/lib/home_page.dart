@@ -8,6 +8,7 @@ import 'package:desarrolla_t/widget_page.dart';
 import 'package:desarrolla_t/newEvent_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 //PAGINA PRINCIPAL
@@ -34,12 +35,14 @@ class _HomePage extends State<HomePage>{
     super.initState();
   }
 
-  String? user = FirebaseAuth.instance.currentUser?.uid;
-
+  String? uid = FirebaseAuth.instance.currentUser?.uid;
+  
 
   @override
   Widget build(BuildContext context) {
     const title = 'Desarrolla-T';
+
+    CollectionReference users = FirebaseFirestore.instance.collection('eventos');
 
     return Consumer(builder: (context, ThemeModel themeNotifier, child){
       return MaterialApp(
@@ -88,30 +91,49 @@ class _HomePage extends State<HomePage>{
                           style: TextStyle(fontSize: 30),
                         ),
                       ),
-                      SizedBox(
-                        height: 150,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: eventos.length,
-                          itemBuilder: (context, index) {
-                            return  Center(
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  InfoTarjeta(name:eventos[index]["event_name"],
-                                  hour:eventos[index]["event_hour"],
-                                  date:eventos[index]["event_date"],
-                                  place:eventos[index]["event_place"],
-                                  color:eventos[index]["event_color"],
-                                  notes:eventos[index]["event_notes"],
-                                  category:eventos[index]["event_category"]),
-                                ],
+                      FutureBuilder<DocumentSnapshot>(
+                        future: users.doc(uid).get(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+                          if (snapshot.hasError) {
+                            return const Text("Ocurrio un error");
+                          }
+
+                          if (snapshot.hasData && !snapshot.data!.exists) {
+                            return const Text("No existen eventos aun");
+                          }
+
+                          if (snapshot.connectionState == ConnectionState.done) {
+                            Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+                            SizedBox(
+                              height: 150,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: data.length,
+                                itemBuilder: (context, index) {
+                                  return Center(
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        InfoTarjeta(name:data["event_name"],
+                                        hour:data["event_hour"],
+                                        date:data["event_date"],
+                                        place:data["event_place"],
+                                        color:data["event_color"],
+                                        notes:data["event_notes"],
+                                        category:data["event_category"]),
+                                      ],
+                                    ),
+                                  );  
+                                },
                               ),
                             );
-                          },
-                        ),
+                          }
+                          return const Text("Cargando...");
+                        },
                       ),
                       const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 20, 25),

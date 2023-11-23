@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 
@@ -8,6 +10,12 @@ class NewEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    var db = FirebaseFirestore.instance;
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+
+    String Nombre;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Nuevo Evento'),
@@ -18,6 +26,23 @@ class NewEvent extends StatelessWidget {
           height: 50,
           child: ElevatedButton(
             onPressed: () {
+
+              final evento = <String, String>{
+                "event_name": "prueba",
+                "event_hour": "",
+                "event_date": "",
+                "event_place": "",
+                "event_color": "",
+                "event_notes": "",
+                "event_category": ""
+              };
+
+              db
+                  .collection("eventos")
+                  .doc(uid)
+                  .set(evento)
+                  .onError((e, _) => print("Error writing document: $e"));
+
               Navigator.pop(context);
               showDialog<String>(
                 context: context,

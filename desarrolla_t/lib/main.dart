@@ -1,5 +1,4 @@
 import 'package:desarrolla_t/habits_page.dart';
-import 'package:desarrolla_t/login_page.dart';
 import 'package:desarrolla_t/theme_model.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/home_page.dart';
