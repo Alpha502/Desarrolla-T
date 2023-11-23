@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 import 'package:desarrolla_t/newEvent_page.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 //PAGINA PRINCIPAL
 
@@ -31,6 +33,9 @@ class _HomePage extends State<HomePage>{
     pendientes = jsonDecode(PENDIENTES);
     super.initState();
   }
+
+  String? user = FirebaseAuth.instance.currentUser?.uid;
+
 
   @override
   Widget build(BuildContext context) {
