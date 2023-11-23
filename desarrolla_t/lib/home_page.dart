@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:desarrolla_t/jsons/constants.dart';
 import 'package:desarrolla_t/theme_model.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:desarrolla_t/widget_page.dart';
 import 'package:desarrolla_t/newEvent_page.dart';
@@ -64,6 +65,7 @@ class _HomePage extends State<HomePage>{
                           : themeNotifier.isDark = true;
                         },
                       ),
+                      const SignOutButton(),
                   ],
                   //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 ),

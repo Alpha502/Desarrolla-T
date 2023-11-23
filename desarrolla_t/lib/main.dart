@@ -10,6 +10,7 @@ import 'package:desarrolla_t/editEvent_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:desarrolla_t/auth_gate.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,14 +48,15 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Rutas',
           theme: themeNotifier.isDark ? ThemeData.dark() : ThemeData.light(),
-          home: const LoginPage(),
+          home: const AuthGate(),
           routes: {
             '/habitpage': (context) => const Habits(),
             '/newpage': (context) => const NewEvent(),
             '/infopage': (context) => const InfoPage(),
             '/editeventpage': (context) => const ModifyEvent(),
             '/calpage': (context) => const TableBasicsExample(),
-            '/loginpage' : (context) => const LoginPage(),
+            //'/loginpage' : (context) => const LoginPage(),
+            '/loginpage' : (context) => const AuthGate(),
             '/homepage': (context) => const HomePage(),
           },
         ); 
