@@ -36,13 +36,14 @@ class _HomePage extends State<HomePage>{
   }
 
   String? uid = FirebaseAuth.instance.currentUser?.uid;
+  late Map<String, dynamic> data;
   
 
   @override
   Widget build(BuildContext context) {
     const title = 'Desarrolla-T';
 
-    CollectionReference users = FirebaseFirestore.instance.collection('eventos');
+    CollectionReference eventos = FirebaseFirestore.instance.collection('eventos');
 
     return Consumer(builder: (context, ThemeModel themeNotifier, child){
       return MaterialApp(
@@ -92,7 +93,7 @@ class _HomePage extends State<HomePage>{
                         ),
                       ),
                       FutureBuilder<DocumentSnapshot>(
-                        future: users.doc(uid).get(),
+                        future: eventos.doc(uid).get(),
                         builder:
                             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
 
@@ -105,8 +106,9 @@ class _HomePage extends State<HomePage>{
                           }
 
                           if (snapshot.connectionState == ConnectionState.done) {
-                            Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-                            SizedBox(
+                            data = snapshot.data!.data() as Map<String, dynamic>;
+                          }
+                          return SizedBox(
                               height: 150,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -119,7 +121,8 @@ class _HomePage extends State<HomePage>{
                                           width: 12,
                                         ),
                                         InfoTarjeta(name:data["event_name"],
-                                        hour:data["event_hour"],
+                                        //hour:data["event_hour"],
+                                        hour:data.length,
                                         date:data["event_date"],
                                         place:data["event_place"],
                                         color:data["event_color"],
@@ -131,10 +134,27 @@ class _HomePage extends State<HomePage>{
                                 },
                               ),
                             );
-                          }
-                          return const Text("Cargando...");
                         },
-                      ),
+                      ),/*
+                      FirestoreListView(
+                        padding: EdgeInsets.symmetric(horizontal: 18),
+                        pageSize: 15,
+                        query: FirebaseFirestore.instance.collection("test"),
+                        itemBuilder: (
+                          BuildContext context,
+                          QueryDocumentSnapshot<Map<String, dynamic>> document,
+                        ) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("${document.data()["cuenta"]}"),
+                              Text("${(document.data()["Cuando"] as Timestamp).toDate()}"),
+                              const Divider()
+                            ],
+                          );
+                        },
+                      ),*/
                       const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 20, 25),
                         child: Text(

@@ -40,8 +40,18 @@ class NewEvent extends StatelessWidget {
               db
                   .collection("eventos")
                   .doc(uid)
-                  .set(evento)
-                  .onError((e, _) => print("Error writing document: $e"));
+                  //.set(evento)
+                  .collection("arreglo_eventos")
+                  .add({
+                    "event_name": "Clase de cocina",
+                    "event_hour": 9,
+                    "event_date": "12 Noviembre",
+                    "event_place": "En el ITESO",
+                    "event_color": "#6D72C3",
+                    "event_notes": "Tengo que llevar mi propio bowl",
+                    "event_category": "Peleas"
+                  });
+                  //.onError((e, _) => print("Error writing document: $e"));
 
               Navigator.pop(context);
               showDialog<String>(
