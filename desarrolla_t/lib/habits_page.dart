@@ -1,8 +1,9 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 
-class Habits extends StatelessWidget {
+
+
+/*class Habits extends StatelessWidget {
   const Habits({super.key});
 
   @override
@@ -71,4 +72,140 @@ class Habits extends StatelessWidget {
           ),
     );
   }
+}
+*/
+
+class Habits extends StatelessWidget {
+  const Habits({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: _MyHomePage(),
+    );
+  }
+}
+
+class _MyHomePage extends StatefulWidget {
+  _MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+late List<GDPData> _chartData;
+late TooltipBehavior _tooltipBehavior;
+
+class _MyHomePageState extends State<_MyHomePage> {
+  List<_SalesData> data = [
+    _SalesData('Jan', 10),
+    _SalesData('Feb', 8),
+    _SalesData('Mar', 14),
+    _SalesData('Apr', 12),
+    _SalesData('May', 10)
+  ];
+
+  @override
+  void initState() {
+    _chartData = getChartData();
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Syncfusion Flutter chart'),
+        ),
+        body: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Graficas",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: Color.fromRGBO(118, 123, 226, 1)),
+              ),
+              //Initialize the chart widget
+              SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                  // Chart title
+                  title: ChartTitle(
+                      text: 'Habitos completados por mes',
+                      borderWidth: 10,
+
+                      // Aligns the chart title to left
+                      alignment: ChartAlignment.near,
+                      textStyle: TextStyle(
+                        color: Color.fromARGB(255, 157, 157, 157),
+                        fontFamily: 'Roboto',
+                        fontSize: 20,
+                      )),
+                  // Enable legend
+                  legend: Legend(isVisible: true),
+                  // Enable tooltip
+                  tooltipBehavior: TooltipBehavior(enable: true),
+                  series: <ChartSeries<_SalesData, String>>[
+                    LineSeries<_SalesData, String>(
+                        dataSource: data,
+                        xValueMapper: (_SalesData sales, _) => sales.year,
+                        yValueMapper: (_SalesData sales, _) => sales.sales,
+                        name: 'Tareas completadas',
+                        // Enable data label
+                        dataLabelSettings: DataLabelSettings(isVisible: true))
+                  ]),
+              SfCircularChart(
+                title: ChartTitle(
+                    text: 'Principales categorias',
+                    borderWidth: 5,
+
+                    // Aligns the chart title to left
+                    alignment: ChartAlignment.near,
+                    textStyle: TextStyle(
+                      color: Color.fromARGB(255, 157, 157, 157),
+                      fontFamily: 'Roboto',
+                      fontSize: 20,
+                    )),
+                legend: Legend(isVisible: true),
+                tooltipBehavior: _tooltipBehavior,
+                series: <CircularSeries>[
+                  DoughnutSeries<GDPData, String>(
+                    dataSource: _chartData,
+                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                    xValueMapper: (GDPData data, _) => data.continent,
+                    yValueMapper: (GDPData data, _) => data.gdp,
+                    enableTooltip: true,
+                  ),
+                ],
+              )
+            ]));
+  }
+}
+
+class _SalesData {
+  _SalesData(this.year, this.sales);
+
+  final String year;
+  final double sales;
+}
+
+class GDPData {
+  GDPData(this.continent, this.gdp);
+  final String continent;
+  final int gdp;
+}
+
+List<GDPData> getChartData() {
+  final List<GDPData> chartData = [
+    GDPData('Escuela', 10),
+    GDPData('Citas', 2),
+    GDPData('Familia', 5)
+  ];
+  return chartData;
 }
